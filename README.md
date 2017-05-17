@@ -41,7 +41,9 @@ This Git Repository is a starting template for your project. The *Collaborating 
 
 To create a local testing environment for your web application, do the following:
 
-* If you are using Docker for Windows, **you need to share the drive that has your Project Folder**. In the System Tray, right-click on the Docker icon, select Settings then Shared Drives. Place a check mark next to the drive letter that contains your Project Folder. Hit Apply at the bottom. When it asks you for Credentials, enter in your Windows login credentials.  
+* If you are using *Docker for Windows*, **you need to share the drive that has your Project Folder**. In the System Tray, right-click on the Docker icon, select Settings then Shared Drives. Place a check mark next to the drive letter that contains your Project Folder. Hit Apply at the bottom. When it asks you for Credentials, enter in your Windows login credentials.  
+<br />
+* If you are using *Docker Toolbox*, **you need to either be working somewhere under C:\Users OR share your project's folder using Virtual Box's shared folders.** You can find documentation on how to do that here: https://www.virtualbox.org/manual/ch04.html#sharedfolders  
 <br />
 * In the Git Bash Shell, in your Project Directory, type:
 
