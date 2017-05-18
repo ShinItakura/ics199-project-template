@@ -14,9 +14,14 @@ services:
       # Mount the src dir so changes to the code are reflected in the container.
       - ./src:/var/www/html
   db:
-    # use mysql version 5.7.12 to match Dokku version
-    image: mysql:5.7.12 
     container_name: mysql
+    build:
+      context: ./db
+      args:
+        # Pass these to the Dockerfile to properly populate db_credentials.php
+        - dbname=$MYSQL_RP
+        - password=$MYSQL_DB
+    image: ics199/db-srv 
     ports:
       # Publish the port so it's visible on the host, you can access the db directly.
       - "3306:3306"
