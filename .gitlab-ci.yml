@@ -54,8 +54,8 @@ before_script:
 
 stages:
   - test
-  - deploy-db
   - deploy-app
+  - deploy-db
   
 static_tests:
   stage: test
@@ -88,10 +88,21 @@ static_tests:
     # # Run unit tests; report coverage -> You only need this if you are using classes
     # - vendor/bin/phpunit --coverage-text --colors=never --whitelist src --bootstrap vendor/autoload.php --testdox tests
 
+deploy_app_to_dokku:
+  stage: deploy-app
+  tags:
+    # use a deploy runner
+    - deploy
+  script:
+    # push the app to the deploy server; create the container
+    - git push dokku@${DEPLOY_SRV}:$CI_PROJECT_NAME master
+  only:
+    - master
+
 deploy_db_to_dokku:
   stage: deploy-db
   tags:
-    # this ensures the Camosun Runner will be used for deployment
+    # use a deploy runner
     - deploy
   script:
     # Create the mysql dump
@@ -102,20 +113,11 @@ deploy_db_to_dokku:
     - 'ssh dokku@$DEPLOY_SRV -- --force mysql:destroy $DBNAME || true'
     # Create/Re-create DB
     - ssh dokku@$DEPLOY_SRV mysql:create $DBNAME
+    # link DB container to app
+    - ssh dokku@$DEPLOY_SRV mysql:link $DBNAME $CI_PROJECT_NAME
     # Import dump
     - ssh dokku@$DEPLOY_SRV mysql:import $DBNAME < dump.sql
   only:
     - master
     
-deploy_app_to_dokku:
-  stage: deploy-app
-  tags:
-    # this ensures the Camosun Runner will be used for deployment
-    - deploy
-  script:
-    # push the app to the deploy server; create the container
-    - git push dokku@${DEPLOY_SRV}:$CI_PROJECT_NAME master
-    # link to DB container
-    - ssh dokku@$DEPLOY_SRV mysql:link $DBNAME $CI_PROJECT_NAME
-  only:
-    - master
+
