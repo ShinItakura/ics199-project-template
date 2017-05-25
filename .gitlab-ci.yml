@@ -113,10 +113,10 @@ deploy_db_to_dokku:
     - 'ssh dokku@$DEPLOY_SRV -- --force mysql:destroy $DBNAME || true'
     # Create/Re-create DB
     - ssh dokku@$DEPLOY_SRV mysql:create $DBNAME
-    # link DB container to app
-    - ssh dokku@$DEPLOY_SRV mysql:link $DBNAME $CI_PROJECT_NAME
     # Import dump
     - ssh dokku@$DEPLOY_SRV mysql:import $DBNAME < dump.sql
+    # link DB container to app
+    - ssh dokku@$DEPLOY_SRV mysql:link $DBNAME $CI_PROJECT_NAME
   only:
     - master
     
