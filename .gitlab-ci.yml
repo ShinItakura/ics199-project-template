@@ -119,5 +119,3 @@ deploy_db_to_dokku:
     - ssh dokku@$DEPLOY_SRV mysql:link $DBNAME $CI_PROJECT_NAME
   only:
     - master
-    
-

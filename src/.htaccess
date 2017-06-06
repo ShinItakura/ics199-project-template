@@ -1,0 +1,6 @@
+# Prevent any pages from being embedded in other sites - prevents CSRF
+Header set X-Frame-Options DENY
+# Prevent using older browsers for XSS attacks
+Header set X-XSS-Protection "1; mode=block"
+# Prevent MIME based attacks
+Header set X-Content-Type-Options "nosniff"
