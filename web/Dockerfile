@@ -26,4 +26,5 @@ RUN curl -sS https://getcomposer.org/installer | php \
     && php composer.phar require phpmailer/phpmailer
 # Change back to root so it can bind to port 80
 USER root
+# Enable Apache Headers module for Header command in .htaccess
 RUN a2enmod headers && service apache2 restart
