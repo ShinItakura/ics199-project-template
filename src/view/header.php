@@ -9,7 +9,7 @@
 integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"
 />
 <!-- Custom Stylesheet -->
-<link rel="stylesheet" href="css/style.css" /> 
+<link rel="stylesheet" href="/css/style.css" /> 
 </head>
 <body>
 <!-- You activate bootstrap through class names. "container" sets up some padding and makes the webpage responsive. -->
