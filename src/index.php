@@ -81,6 +81,6 @@
             <?php } ?>
         </tbody>
     </table>
-    <p><a href="name_form.php">Enter a Name</a></p>
+    <p><a href="view/name_form.php">Enter a Name</a></p>
     <!-- include the footer. -->
 <?php require 'view/footer.html'; ?>
